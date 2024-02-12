@@ -28,6 +28,12 @@ class _PlanScreenState extends State<PlanScreen> {
               )
             ],
           )),
+      body: const Center(
+          child: Text(
+            '🪀 생활비',
+            style: TextStyle(fontSize: 50),
+          ),
+        ),
     );
   }
 }
