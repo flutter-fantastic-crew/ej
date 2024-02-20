@@ -8,16 +8,25 @@ class PlanScreen extends StatefulWidget {
 }
 
 class _PlanScreenState extends State<PlanScreen> {
+
+  handleAddClick() {}
+  handleMoreClick() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        actions: <Widget>[
-          const Icon(Icons.add, color: Colors.grey, size: 25),
-          Container(
-            margin: const EdgeInsets.only(left: 25),
-            child: const Icon(Icons.more_horiz, color: Colors.grey, size: 25)
+        actions: [
+          IconButton(
+            style: const ButtonStyle(),
+            onPressed: handleAddClick(), 
+            icon: const Icon(Icons.add, color: Colors.grey,)
+          ),
+          IconButton(
+            style: const ButtonStyle(),
+            onPressed: handleMoreClick(),
+            icon: const Icon(Icons.more_horiz, color: Colors.grey)
           )
         ],
         title: Row(
