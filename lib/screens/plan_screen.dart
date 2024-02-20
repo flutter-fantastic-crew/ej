@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scone_clone/components/app_bar_widget.dart';
+import 'package:scone_clone/components/horizontal_list.dart';
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
 
@@ -16,12 +17,7 @@ class _PlanScreenState extends State<PlanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(),
-      body: const Center(
-          child: Text(
-            '🪀 생활비',
-            style: TextStyle(fontSize: 50),
-          ),
-        ),
+      body: const HorizontalList()
     );
   }
 }
