@@ -7,41 +7,42 @@ class HorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const title = 'Horizontal List';
-
     return MaterialApp(
-      title: title,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(title),
-        ),
+        backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
         body: Container(
-          margin: const EdgeInsets.symmetric(vertical: 20),
-          height: 200,
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          height: double.infinity,
           child: ListView(
             // This next line does the trick.
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              Container(
-                width: 160,
-                color: Colors.red,
-              ),
-              Container(
-                width: 160,
-                color: Colors.blue,
-              ),
-              Container(
-                width: 160,
-                color: Colors.green,
-              ),
-              Container(
-                width: 160,
-                color: Colors.yellow,
-              ),
-              Container(
-                width: 160,
-                color: Colors.orange,
-              ),
+              Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width - 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.white,
+                    ),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 15),
+                    padding: const EdgeInsets.all(50),
+                  ),
+                  Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      height: 10,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            radius: 8,
+                            backgroundColor: Colors.grey,
+                          )
+                        ],
+                      ))
+                ],
+              )
             ],
           ),
         ),

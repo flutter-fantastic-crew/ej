@@ -5,6 +5,7 @@ class AppBarWidget extends AppBar {
   AppBarWidget({super.key})
       : super(
             centerTitle: false,
+            backgroundColor: const Color.fromRGBO(243, 243, 243, 1),
             actions: [
               IconButton(
                   style: const ButtonStyle(),
