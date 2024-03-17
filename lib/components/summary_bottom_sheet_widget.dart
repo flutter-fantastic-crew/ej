@@ -26,13 +26,27 @@ class SummaryBottomSheetWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           // 더미데이터
-          const Text(
-            '요약',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+
+            children: [
+              const Text(
+                '요약',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              DropdownButton<String?>(
+                items: [null, 'KRW', 'USD']
+                    .map<DropdownMenuItem<String?>>((String? i) {
+                  return DropdownMenuItem<String?>(
+                    value: i,
+                    child: Text({'KRW': '대한민국 - 원', 'USD': '미국 - 달러'}[i] ?? '대한민국 - 원'),
+                  );
+                }).toList(), onChanged: (String? value) {  },
+              )
+            ],
           ),
           const SizedBox(height: 10),
           ListTile(
