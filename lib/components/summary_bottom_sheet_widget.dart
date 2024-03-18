@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scone_clone/components/account_card_widget.dart';
 
 class SummaryBottomSheetWidget {
   static void show(BuildContext context) {
@@ -52,21 +53,45 @@ class SummaryBottomSheetWidget {
               )
             ],
           ),
-          const SizedBox(height: 10),
-          ListTile(
-            title: const Text('총 소비'),
-            onTap: () {
-              // 일정 요약 로직을 추가할 수 있습니다.
-              Navigator.pop(context);
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const AccountCardWidget(label: '총 소비', account: 0),
+              AccountCardWidget(
+                label: '총 수입',
+                account: 0,
+                textColor: Colors.green[700],
+              ),
+            ],
           ),
-          ListTile(
-            title: const Text('총 수입'),
-            onTap: () {
-              // 통계 요약 로직을 추가할 수 있습니다.
-              Navigator.pop(context);
-            },
-          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width - 32,
+                margin: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  color: Colors.grey[100],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Row(children: [
+                      Text('남은 총 예산'),
+                      Text(
+                        '80원', // 사이를 띄고 싶어요
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      )
+                    ]),
+                    Text('/ 100원', style: TextStyle(color: Colors.grey[400], fontWeight: FontWeight.w600))
+                  ],
+                ),
+              )
+            ],
+          )
         ],
       ),
     );
