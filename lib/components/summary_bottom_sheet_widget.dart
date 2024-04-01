@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scone_clone/components/account_card_widget.dart';
+import 'package:scone_clone/components/consume_widget.dart';
 
 class SummaryBottomSheetWidget {
   static void show(BuildContext context) {
@@ -87,10 +88,25 @@ class SummaryBottomSheetWidget {
                         style: TextStyle(fontWeight: FontWeight.w700),
                       )
                     ]),
-                    Text('/ 100원', style: TextStyle(color: Colors.grey[400], fontWeight: FontWeight.w600))
+                    Text('/ 100원',
+                        style: TextStyle(
+                            color: Colors.grey[400],
+                            fontWeight: FontWeight.w600))
                   ],
                 ),
               )
+            ],
+          ),
+          const SizedBox(height: 30,),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '플랜별 소비',
+                style: TextStyle(color: Colors.black38),
+                textAlign: TextAlign.left,
+              ),
+              ConsumeWidget()
             ],
           )
         ],
