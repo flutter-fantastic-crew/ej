@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ConsumeWidget extends StatelessWidget {
   const ConsumeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var f = NumberFormat('###,###,###,###');
+    var money = f.format(20000);
+    String usedMoney = '$money원';
+
     return (Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -27,14 +32,14 @@ class ConsumeWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 22))),
                 const SizedBox(width: 15),
-                const Column(
+                Column(
                   children: [
-                    Text(
+                    const Text(
                       '강아지 간식',
                     ),
                     Text(
-                      '20,000원',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                      usedMoney,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],
                 )

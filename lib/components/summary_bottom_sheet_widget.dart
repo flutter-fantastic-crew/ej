@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scone_clone/components/account_card_widget.dart';
 import 'package:scone_clone/components/consume_widget.dart';
+import 'package:intl/intl.dart';
 
 class SummaryBottomSheetWidget {
   static void show(BuildContext context) {
@@ -16,6 +17,9 @@ class SummaryBottomSheetWidget {
   static Widget _buildSummaryBottomSheetContent(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double sheetHeight = screenHeight * 0.86; // 90%의 높이
+    var f = NumberFormat('###,###,###,###');
+    var money = f.format(20000);
+    String text = '/ $money원';
 
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -84,11 +88,11 @@ class SummaryBottomSheetWidget {
                       Text('남은 총 예산'),
                       SizedBox(width: 5),
                       Text(
-                        '80원',
+                        '0원',
                         style: TextStyle(fontWeight: FontWeight.w700),
                       )
                     ]),
-                    Text('/ 100원',
+                    Text(text,
                         style: TextStyle(
                             color: Colors.grey[400],
                             fontWeight: FontWeight.w600))
