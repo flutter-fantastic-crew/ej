@@ -81,8 +81,9 @@ class SummaryBottomSheetWidget {
                   children: [
                     const Row(children: [
                       Text('남은 총 예산'),
+                      SizedBox(width: 5),
                       Text(
-                        '80원', // 사이를 띄고 싶어요
+                        '80원',
                         style: TextStyle(fontWeight: FontWeight.w700),
                       )
                     ]),
