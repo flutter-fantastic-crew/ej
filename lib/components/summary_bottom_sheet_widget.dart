@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scone_clone/components/account_card_widget.dart';
 import 'package:scone_clone/components/consume_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:scone_clone/view_model/plan_model.dart';
 
 class SummaryBottomSheetWidget {
   static void show(BuildContext context) {
@@ -110,7 +112,11 @@ class SummaryBottomSheetWidget {
                 style: TextStyle(color: Colors.black38),
                 textAlign: TextAlign.left,
               ),
-              ConsumeWidget()
+              Consumer<PlanModel>(builder: (_, planModel, __) => ( // 이전에 만들었던 모델로 같이 사용할 수 있을 것 같음
+                List<Widget>.generate(
+                  context.watch<PlanModel>().plans.length, (index) => const ConsumeWidget(planModel))
+                )
+              )
             ],
           )
         ],

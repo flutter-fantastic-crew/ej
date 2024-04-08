@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:scone_clone/view_model/plan_model.dart';
 
 class ConsumeWidget extends StatelessWidget {
-  const ConsumeWidget({super.key});
+  const ConsumeWidget(PlanModel planModel, {super.key});
 
   @override
   Widget build(BuildContext context) {
