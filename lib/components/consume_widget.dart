@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:scone_clone/view_model/plan_model.dart';
+import 'package:scone_clone/entity/plan_data_entity.dart';
 
 class ConsumeWidget extends StatelessWidget {
-  const ConsumeWidget(PlanModel planModel, {super.key});
+  final PlanDataEntity plan;
+
+  const ConsumeWidget({super.key, required this.plan});
 
   @override
   Widget build(BuildContext context) {
     var f = NumberFormat('###,###,###,###');
-    var money = f.format(20000);
+    var money = f.format(plan.total);
     String usedMoney = '$money원';
 
     return (Row(
@@ -29,14 +31,14 @@ class ConsumeWidget extends StatelessWidget {
                       color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    child: const Text('😁',
+                    child: Text( plan.planIcon,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 22))),
+                        style: const TextStyle(fontSize: 22))),
                 const SizedBox(width: 15),
                 Column(
                   children: [
-                    const Text(
-                      '강아지 간식',
+                    Text(
+                      plan.planName,
                     ),
                     Text(
                       usedMoney,
@@ -52,7 +54,8 @@ class ConsumeWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           color: Colors.grey[700])),
                   const SizedBox(width: 10),
-                  Text('남음', style: TextStyle(color: Colors.grey[600]))
+                  Text(plan.planType == 'FREE' ? '수입' : '남음', 
+                  style: TextStyle(color: Colors.grey[600]))
                 ],
               )
             ],

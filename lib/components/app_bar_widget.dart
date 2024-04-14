@@ -19,7 +19,7 @@ class AppBarWidget extends AppBar {
             ],
             title: GestureDetector(
               onTap: () {
-                SummaryBottomSheetWidget.show(context);
+                 _showBottomSheet(context);
               },
               child: Row(
                 children: [
@@ -31,4 +31,19 @@ class AppBarWidget extends AppBar {
                 ],
               ),
             ));
+              static void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25.0),
+          topRight: Radius.circular(25.0),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return const SummaryBottomSheetWidget();
+      },
+    );
+  }
 }
