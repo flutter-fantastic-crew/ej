@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import 'package:scone_clone/components/account_card_widget.dart';
 import 'package:scone_clone/components/consume_widget.dart';
-import 'package:intl/intl.dart';
 import 'package:scone_clone/view_model/plan_model.dart';
 
-class SummaryBottomSheetWidget {
-  static void show(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // 높이 전체를 사용하는 true
-      builder: (BuildContext context) {
-        return _buildSummaryBottomSheetContent(context);
-      },
-    );
-  }
+class SummaryBottomSheetWidget extends StatelessWidget {
+  const SummaryBottomSheetWidget({super.key});
 
-  static Widget _buildSummaryBottomSheetContent(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double sheetHeight = screenHeight * 0.86; // 90%의 높이
+  @override
+  Widget build(BuildContext context) {
     var f = NumberFormat('###,###,###,###');
-    var money = f.format(20000);
-    String text = '/ $money원';
+    final planModel = Provider.of<PlanModel>(context, listen: false);
+    moneyWithText(total) => '/ ${f.format(total)} 원';
 
-    return Container(
+    return FractionallySizedBox(
+      heightFactor: 0.88,
+        child: Container(
       padding: const EdgeInsets.all(16.0),
-      height: sheetHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: Colors.white,
@@ -94,7 +86,7 @@ class SummaryBottomSheetWidget {
                         style: TextStyle(fontWeight: FontWeight.w700),
                       )
                     ]),
-                    Text(text,
+                    Text(moneyWithText(planModel.getOriginalTotalBudget()),
                         style: TextStyle(
                             color: Colors.grey[400],
                             fontWeight: FontWeight.w600))
@@ -103,24 +95,26 @@ class SummaryBottomSheetWidget {
               )
             ],
           ),
-          const SizedBox(height: 30,),
-          const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '플랜별 소비',
-                style: TextStyle(color: Colors.black38),
-                textAlign: TextAlign.left,
-              ),
-              Consumer<PlanModel>(builder: (_, planModel, __) => ( // 이전에 만들었던 모델로 같이 사용할 수 있을 것 같음
-                List<Widget>.generate(
-                  context.watch<PlanModel>().plans.length, (index) => const ConsumeWidget(planModel))
-                )
-              )
-            ],
-          )
+          const SizedBox(
+            height: 30,
+          ),
+          const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              '플랜별 소비',
+              style: TextStyle(color: Colors.black38),
+              textAlign: TextAlign.left,
+            ),
+          ]),
+          Consumer<PlanModel>(
+              builder: (context, planModel, child) => (ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: planModel.plans.length,
+                  itemBuilder: (context, index) {
+                    final plan = planModel.plans[index];
+                    return ConsumeWidget(plan: plan);
+                  })))
         ],
       ),
-    );
+    ));
   }
 }
